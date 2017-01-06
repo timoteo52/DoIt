@@ -24,20 +24,20 @@ class CreateTaskViewController: UIViewController {
         //do any additional setup after loading the view.
     }
     
-    @IBAction func addTapped(sender: AnyObject) {
+    @IBAction func addTapped(_ sender: AnyObject) {
         
         //create a task from outlet's info
         
         let task = Task()
         task.name = taskNameTextField.text!
-        task.important = importantSwitch.on
+        task.important = importantSwitch.isOn
         
         
         //and add new task to array in previous view controller
         
         previousVC.tasks.append(task)
         previousVC.tableView.reloadData()
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
         
         
     }

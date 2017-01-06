@@ -34,13 +34,13 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     */
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks.count
         
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         let task = tasks[indexPath.row]
         if task.important {
@@ -52,10 +52,11 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         return cell
     }
     
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let task = tasks[indexPath.row]
-        performSegueWithIdentifier("selectTaskSegue", sender: task)
+        performSegue(withIdentifier: "selectTaskSegue", sender: task)
     }
+    
     
     func makeTasks() -> [Task] {
         let task1 = Task()
@@ -71,22 +72,22 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         return [task1, task2, task3]
     }
     
-    @IBAction func plusTapped(sender: AnyObject) {
-        performSegueWithIdentifier("addSegue", sender: nil)
+    @IBAction func plusTapped(_ sender: AnyObject) {
+        performSegue(withIdentifier: "addSegue", sender: nil)
     }
     
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "addSegue" {
-            let nextVC = segue.destinationViewController as! CreateTaskViewController
+            let nextVC = segue.destination as! CreateTaskViewController
             nextVC.previousVC = self
         }
         if segue.identifier == "selectTaskSegue" {
-            let nextVC = segue.destinationViewController as! CompleteTaskViewController
+            let nextVC = segue.destination as! CompleteTaskViewController
             nextVC.task = sender as! Task
-            print("just did segue to completeTaskViewController")
+            //print("just did segue to completeTaskViewController")
             
         }
         

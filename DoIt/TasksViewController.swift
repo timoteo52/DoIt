@@ -13,6 +13,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     
     var tasks : [Task] = []
+    var selectedIndex = 0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +29,11 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     /* ...not needed for simple programs
-    override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-    }
-    */
+     override func didReceiveMemoryWarning() {
+     super.didReceiveMemoryWarning()
+     // Dispose of any resources that can be recreated.
+     }
+     */
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,11 +54,20 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        selectedIndex = indexPath.row
         let task = tasks[indexPath.row]
+        print(task.name)
         performSegue(withIdentifier: "selectTaskSegue", sender: task)
     }
-    
+    /*  UUUUUUUGGGGGGGGGHHHHHHHH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+     let task = tasks[indexPath.row]
+     print(task.name)
+     performSegue(withIdentifier: "selectTaskSegue", sender: task)
+     }
+     */
     
     func makeTasks() -> [Task] {
         let task1 = Task()
@@ -87,6 +98,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         if segue.identifier == "selectTaskSegue" {
             let nextVC = segue.destination as! CompleteTaskViewController
             nextVC.task = sender as! Task
+            nextVC.previousVC = self
             //print("just did segue to completeTaskViewController")
             
         }

@@ -9,6 +9,7 @@
 //import Cocoa
 import UIKit
 
+@available(iOS 10.0, *)
 class CompleteTaskViewController: UIViewController {
     
     @IBOutlet weak var taskLabel: UILabel!

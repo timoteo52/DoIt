@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(iOS 10.0, *)
 class TasksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
@@ -21,11 +22,16 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Do any additional setup after loading the view, typically from a nib.
         
         //this needs to be before datasource/delegate
-        tasks = makeTasks()
+        // tasks = makeTasks()  - core data
         
         tableView.dataSource = self
         tableView.delegate = self
         
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getTasks()
     }
     
     /* ...not needed for simple programs
@@ -58,10 +64,10 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         selectedIndex = indexPath.row
         let task = tasks[indexPath.row]
-        print(task.name)
+        //print(task.name)
         performSegue(withIdentifier: "selectTaskSegue", sender: task)
     }
-    /*  UUUUUUUGGGGGGGGGHHHHHHHH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /*  needed didSelect, NOT didDeSelect UUUUUUUGGGGGGGGGHHHHHHHH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
      func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
      let task = tasks[indexPath.row]
      print(task.name)
@@ -69,19 +75,21 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
      }
      */
     
-    func makeTasks() -> [Task] {
-        let task1 = Task()
-        task1.name = "Walk the dog"
-        task1.important = false
-        let task2 = Task()
-        task2.name = "Buy cheese"
-        task2.important = true
-        let task3 = Task()
-        task3.name = "Mow the lawn"
-        task3.important = false
-        
-        return [task1, task2, task3]
-    }
+    /* moving to core data
+     func makeTasks() -> [Task] {
+     let task1 = Task()
+     task1.name = "Walk the dog"
+     task1.important = false
+     let task2 = Task()
+     task2.name = "Buy cheese"
+     task2.important = true
+     let task3 = Task()
+     task3.name = "Mow the lawn"
+     task3.important = false
+     
+     return [task1, task2, task3]
+     }  */
+    
     
     @IBAction func plusTapped(_ sender: AnyObject) {
         performSegue(withIdentifier: "addSegue", sender: nil)
@@ -89,12 +97,26 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    func getTasks() {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
-        if segue.identifier == "addSegue" {
-            let nextVC = segue.destination as! CreateTaskViewController
-            nextVC.previousVC = self
+        do {
+            tasks = try context.fetch(Task.fetchRequest()) as! [Task]
+            print(tasks)
+        } catch {
+            print("oops fetch request error")
         }
+        
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        /*
+         if segue.identifier == "addSegue" {
+         let nextVC = segue.destination as! CreateTaskViewController
+         nextVC.previousVC = self
+         
+         }*/
         if segue.identifier == "selectTaskSegue" {
             let nextVC = segue.destination as! CompleteTaskViewController
             nextVC.task = sender as! Task

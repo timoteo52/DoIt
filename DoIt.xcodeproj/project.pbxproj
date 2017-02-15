@@ -13,7 +13,6 @@
 		F4D3F77F1E1B1F7500EC3D8A /* DoIt.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4D3F77D1E1B1F7500EC3D8A /* DoIt.xcdatamodeld */; };
 		F4D3F7811E1B1F7500EC3D8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4D3F7801E1B1F7500EC3D8A /* Assets.xcassets */; };
 		F4D3F7841E1B1F7500EC3D8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4D3F7821E1B1F7500EC3D8A /* LaunchScreen.storyboard */; };
-		F4D3F78C1E1B296B00EC3D8A /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3F78B1E1B296A00EC3D8A /* Task.swift */; };
 		F4D3F7901E1B345000EC3D8A /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3F78F1E1B345000EC3D8A /* CreateTaskViewController.swift */; };
 		F4D3F7921E1CBDE600EC3D8A /* CompleteTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3F7911E1CBDE600EC3D8A /* CompleteTaskViewController.swift */; };
 /* End PBXBuildFile section */
@@ -27,7 +26,6 @@
 		F4D3F7801E1B1F7500EC3D8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4D3F7831E1B1F7500EC3D8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F4D3F7851E1B1F7500EC3D8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F4D3F78B1E1B296A00EC3D8A /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		F4D3F78F1E1B345000EC3D8A /* CreateTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
 		F4D3F7911E1CBDE600EC3D8A /* CompleteTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteTaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,7 +64,6 @@
 				F4D3F7781E1B1F7500EC3D8A /* TasksViewController.swift */,
 				F4D3F78F1E1B345000EC3D8A /* CreateTaskViewController.swift */,
 				F4D3F7911E1CBDE600EC3D8A /* CompleteTaskViewController.swift */,
-				F4D3F78B1E1B296A00EC3D8A /* Task.swift */,
 				F4D3F77A1E1B1F7500EC3D8A /* Main.storyboard */,
 				F4D3F7801E1B1F7500EC3D8A /* Assets.xcassets */,
 				F4D3F7821E1B1F7500EC3D8A /* LaunchScreen.storyboard */,
@@ -148,7 +145,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4D3F78C1E1B296B00EC3D8A /* Task.swift in Sources */,
 				F4D3F77F1E1B1F7500EC3D8A /* DoIt.xcdatamodeld in Sources */,
 				F4D3F7921E1CBDE600EC3D8A /* CompleteTaskViewController.swift in Sources */,
 				F4D3F7791E1B1F7500EC3D8A /* TasksViewController.swift in Sources */,
@@ -217,7 +213,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -258,7 +254,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

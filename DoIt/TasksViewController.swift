@@ -14,7 +14,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     
     var tasks : [Task] = []
-    var selectedIndex = 0
+ //   var selectedIndex = 0  (dont need because of core data)
     
     
     override func viewDidLoad() {
@@ -32,6 +32,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewWillAppear(_ animated: Bool) {
         getTasks()
+        tableView.reloadData()
     }
     
     /* ...not needed for simple programs
@@ -52,9 +53,9 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         let cell = UITableViewCell()
         let task = tasks[indexPath.row]
         if task.important {
-            cell.textLabel?.text = "❗️\(task.name)"
+            cell.textLabel?.text = "❗️\(task.name!)"
         } else {
-            cell.textLabel?.text = task.name
+            cell.textLabel?.text = task.name!
         }
         
         return cell
@@ -62,7 +63,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        selectedIndex = indexPath.row
+        //selectedIndex = indexPath.row (dont need because of core data)
         let task = tasks[indexPath.row]
         //print(task.name)
         performSegue(withIdentifier: "selectTaskSegue", sender: task)
@@ -119,8 +120,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
          }*/
         if segue.identifier == "selectTaskSegue" {
             let nextVC = segue.destination as! CompleteTaskViewController
-            nextVC.task = sender as! Task
-            nextVC.previousVC = self
+            nextVC.task = sender as? Task
+            //nextVC.previousVC = self(dont need because of core data)
             //print("just did segue to completeTaskViewController")
             
         }
